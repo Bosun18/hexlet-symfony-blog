@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ExampleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Validator;
 
 #[ORM\Entity(repositoryClass: ExampleRepository::class)]
 class Example
@@ -14,6 +15,8 @@ class Example
     private ?int $id = null;
 
     #[ORM\Column(length: 1000)]
+    #[Validator\NotBlank]
+    #[Validator\Length(['min' => 4])]
     private ?string $name = null;
 
     public function getId(): ?int
